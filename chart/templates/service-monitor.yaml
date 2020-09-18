@@ -4,7 +4,7 @@ kind: ServiceMonitor
 metadata:
   name: {{ include "cloudprober.fullname" . }}
   labels:
-    release: prom-stack # Hack!
+    release: prometheus-operator # Hack!
     {{- include "cloudprober.labels" . | nindent 4 }}
 spec:
   endpoints:
