@@ -25,6 +25,25 @@ data:
     }
 
     probe {
+      name: "metrics-app.host/err"
+      type: HTTP
+      targets {
+        host_names: "{{ .Values.targetHost }}"
+      }
+
+      http_probe {
+        protocol: HTTP
+        relative_url: "/err"
+        headers {
+          name: "Host"
+          value: "metrics-app.host"
+        }
+      }
+      interval_msec:   3  # .001s
+      timeout_msec:   50  # .05s
+    }
+
+    probe {
       name: "slo-app.host"
       type: HTTP
       targets {
