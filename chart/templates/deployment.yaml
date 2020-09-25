@@ -30,7 +30,8 @@ spec:
           command: ["/cloudprober"]
           args: [
             "--config_file","/cfg/cloudprober.cfg",
-            "--logtostderr"
+            "--logtostderr",
+            "--cloud_metadata=none"
           ]
           volumeMounts:
           - name: {{ include "cloudprober.fullname" . }}-config
