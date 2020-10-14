@@ -33,12 +33,15 @@ spec:
             "--logtostderr",
             "--cloud_metadata=none"
           ]
+          env:
+          - name: CLOUDPROBER_PORT
+            value: "9313"
           volumeMounts:
           - name: {{ include "cloudprober.fullname" . }}-config
             mountPath: /cfg
           ports:
             - name: web
-              containerPort: 80
+              containerPort: 9313
               protocol: TCP
           livenessProbe:
             httpGet:

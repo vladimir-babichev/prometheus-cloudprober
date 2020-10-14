@@ -7,56 +7,44 @@ metadata:
 data:
   cloudprober.cfg: |
     probe {
-      name: "metrics-app.host"
+      name: "metrics-app"
       type: HTTP
       targets {
-        host_names: "{{ .Values.targetHost }}"
+        host_names: "metrics-app"
       }
 
       http_probe {
         protocol: HTTP
-        headers {
-          name: "Host"
-          value: "metrics-app.host"
-        }
       }
-      interval_msec:   1  # .001s
+      interval_msec:  200 # .2s
       timeout_msec:   50  # .05s
     }
 
     probe {
-      name: "metrics-app.host/err"
+      name: "metrics-app/err"
       type: HTTP
       targets {
-        host_names: "{{ .Values.targetHost }}"
+        host_names: "metrics-app"
       }
 
       http_probe {
         protocol: HTTP
         relative_url: "/err"
-        headers {
-          name: "Host"
-          value: "metrics-app.host"
-        }
       }
-      interval_msec:   3  # .001s
+      interval_msec:  300 # .3s
       timeout_msec:   50  # .05s
     }
 
     probe {
-      name: "slo-app.host"
+      name: "slo-app"
       type: HTTP
       targets {
-        host_names: "{{ .Values.targetHost }}"
+        host_names: "slo-app"
       }
 
       http_probe {
         protocol: HTTP
-        headers {
-          name: "Host"
-          value: "slo-app.host"
-        }
       }
-      interval_msec:   1  # .001s
+      interval_msec:  100 # .1s
       timeout_msec:   50  # .05s
     }
